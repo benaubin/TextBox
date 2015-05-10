@@ -11,7 +11,7 @@ case ARGV[0]
     File.write('text_box_password', "#{STDIN.gets}")
     puts 'Now set some text!'
     File.write('text_box', "#{STDIN.gets}")
-    puts 'Ok, awesome! You are done! Run TextBox.rb run'
+    puts 'Ok, awesome! You are done! Run textboxserver run to start the server!'
   when 'run'
     begin
       require 'TextBoxServer.rb'
