@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+
+#like a switch in Java, ARGV is the 1st command line augment ex. ruby TextBox.rb {ARGV[0]}
+case ARGV[0]
+  when 'setup'
+    puts 'Welcome to the TextBox server!'
+    puts '=============================='
+    puts 'Please choose a password...'
+#Gets password from command line, and sets it to an Eviormental Password
+    File.write('text_box_password', "#{STDIN.gets}")
+    puts 'Now set some text!'
+    File.write('text_box', "#{STDIN.gets}")
+    puts 'Ok, awesome! You are done! Run TextBox.rb run'
+  when 'run'
+    begin
+      require 'TextBoxServer.rb'
+    rescue LoadError => e
+      require 'rubygems'
+      path = File.expand_path '../../lib', __FILE__
+      $:.unshift(path) if File.directory?(path) && !$:.include?(path)
+      require 'TextBoxServer.rb'
+    end
+  else
+    puts 'This is the TextBox server.'
+    puts 'It was written by Ben from bensites.com'
+    puts '          Options:'
+    puts '============================'
+    puts 'run:   Runs the server'
+    puts 'setup: Sets things up'
+    puts 'help:  Displays this message'
+end
