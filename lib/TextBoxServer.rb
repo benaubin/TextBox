@@ -6,7 +6,7 @@ class Server < Sinatra::Base
 
 #get '/' is like rails routes.rb, basically saying whenever you go to the homepage of the api.
   get '/' do
-    File.read('text_box')
+    File.read('text_box.txt')
   end
 
 #put '/' is like get '/', but it is a bit different, and accepts a body (learn the difference between put and get here: http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods)
@@ -15,7 +15,7 @@ class Server < Sinatra::Base
     request.body.rewind
 
     #Sets what is in the text box
-    File.write('text_box', request.body.read)
+    File.write('text_box.txt', request.body.read)
   end
 
 end
